@@ -1,0 +1,21 @@
+{
+  "name": "balderdash",
+  "version": "1.0.0",
+  "description": "The Balderdash App Backend",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Morgan Den",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.10",
+    "morgan": "^1.9.1",
+    "ws": "^6.1.2"
+  }
+}

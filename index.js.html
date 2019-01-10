@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<p>Game Code</p>
+<input id="code" type="text">
+<p>Nickname</p>
+<input id="nick" type="text">
+<button onclick="joinGame()">Join</button>
+
+
+<h2>Create Game</h2>
+<input id="name" placeholder="name" type="text">
+<button onclick="createGame()">Create</button>
+
+<script>
+    function joinGame() {
+    	const code = $('#code').val();
+    	const nick = $('#nick').val();
+        // Create WebSocket connection.
+		const socket = new WebSocket('ws://localhost:8080/game/' + code);
+
+		// Connection opened
+		socket.addEventListener('open', function (event) {
+			socket.send({nick: nick});
+		});
+
+		// Listen for messages
+		socket.addEventListener('message', function (event) {
+			console.log('Message from server ', event.data);
+		});
+    }
+
+    function createGame() {
+		const nick = $('#name').val();
+
+		// Create WebSocket connection.
+		const socket = new WebSocket('ws://localhost:8080/new/');
+
+		// Connection opened
+		socket.addEventListener('open', function (event) {
+			socket.send({nick: nick});
+		});
+
+		// Listen for messages
+		socket.addEventListener('message', function (event) {
+			const msg = event.data;
+            if (msg.code) {
+            	alert("Game code is " + msg.code)
+            }
+		});
+    }
+</script>
+
+
+</body>
+</html>
