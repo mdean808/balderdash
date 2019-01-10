@@ -4,11 +4,12 @@ const Utils = require('./util');
 
 let games = [];
 
-const wss = new WebSocket.Server({port: process.env.PORT || 3000});
-
 const server = express()
-	.use(express.static(__dirname) )
-	.listen(process.env.PORT || 8080, () => console.log(`Listening on ${ process.env.PORT || 8080}`));
+	.use(express.static(__dirname))
+	.listen(process.env.PORT || 8080, () => console.log(`Listening on ${process.env.PORT || 8080}`));
+
+const wss = new WebSocket.Server({server});
+
 
 wss.on('connection', function connection(ws, req) {
 	const pathName = req.url;
