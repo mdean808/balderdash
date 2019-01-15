@@ -71,12 +71,13 @@ function connectToGame(path, ws) {
 
 	if (game.users.filter(user => user.nick === nick).length > 0) return [false, false];
 	const player = new Player(decodeURI(nick), ws, false);
-
+	console.log("connectTo")
 	game.newPlayer(player);
 	return [player, game]
 }
 
 function createGame(nick, ws) {
+	console.log("create");
 	const newGame = new Game();
 	const player = new Player(nick, ws, true);
 	newGame.newPlayer(player);

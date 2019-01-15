@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bef06ed6-23e7-43cf-8c16-ca091b94d550" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="90" column="45" selection-start-line="90" selection-start-column="45" selection-end-line="90" selection-end-column="45" />
+            <state relative-caret-position="216">
+              <caret line="73" column="28" selection-start-line="73" selection-start-column="28" selection-end-line="73" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -87,7 +86,6 @@
       <find>newCard</find>
       <find>newRe</find>
       <find>intermission</find>
-      <find>dasher</find>
       <find>getAll</find>
       <find>votes</find>
       <find>points</find>
@@ -96,6 +94,8 @@
       <find>nextRou</find>
       <find>console.log</find>
       <find>newplayer</find>
+      <find>dasher</find>
+      <find>role</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,12 +178,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547018978648</updated>
       <workItem from="1547018980068" duration="22772000" />
-      <workItem from="1547163552153" duration="2886000" />
+      <workItem from="1547163552153" duration="3196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25658000" />
+    <option name="totallyTimeSpent" value="25968000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -219,8 +219,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="90" column="45" selection-start-line="90" selection-start-column="45" selection-end-line="90" selection-end-column="45" />
+        <state relative-caret-position="216">
+          <caret line="73" column="28" selection-start-line="73" selection-start-column="28" selection-end-line="73" selection-end-column="28" />
         </state>
       </provider>
     </entry>
