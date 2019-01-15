@@ -40,6 +40,11 @@ wss.on('connection', function connection(ws, req) {
 			game.selectResponse(message.content.text, player);
 			game.sendUpdate()
 		}
+
+		if (message.type === 'gameUpdate') {
+			game.state = 'starting'
+		}
+
 		if (message.type === 'next_round') {
 			if (!game.nextRound(player)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
@@ -65,7 +70,7 @@ function connectToGame(path, ws) {
 	if (!game || game.state !== 'creating') return [false, false];
 
 	if (game.users.filter(user => user.nick === nick).length > 0) return [false, false];
-	const player = new Player(nick, ws, false);
+	const player = new Player(decodeURI(nick), ws, false);
 
 	game.newPlayer(player);
 	return [player, game]
@@ -83,7 +88,7 @@ function createGame(nick, ws) {
 class Game {
 	constructor() {
 		this.code = Utils.generateNewRoomId();
-		this.state = 'creating'; // creating starting, writing, picking, intermission
+		this.state = 'creating'; // creating, starting, writing, picking, intermission
 		this.users = [];
 		this.dasher = null;
 		this.card = {};
