@@ -42,7 +42,8 @@ wss.on('connection', function connection(ws, req) {
 		}
 
 		if (message.type === 'gameUpdate') {
-			game.state = 'starting'
+			game.state = 'starting';
+			game.sendUpdate()
 		}
 
 		if (message.type === 'next_round') {
