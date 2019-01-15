@@ -23,6 +23,7 @@ wss.on('connection', function connection(ws, req) {
 
 	ws.on('message', function incoming(message) { // message should contain type and content
 		// console.log(`Received: "%s" from room ${game.code}.`, message);
+		message.trim();
 		message = JSON.parse(message);
 		if (message.type === 'card') {
 			if (!game.newCard(message.content.text, player, message.content.answer)) {
