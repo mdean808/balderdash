@@ -116,6 +116,7 @@ class Game {
 			nick: player.nick
 		};
 		this.responses.push({text: text, player: newPlayer, votes: [], isAnswer: answer});
+		console.log(this.responses);
 		if (this.checkAllResponses()) {
 			this.state = 'picking'
 		}
