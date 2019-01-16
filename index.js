@@ -42,8 +42,7 @@ wss.on('connection', function connection(ws, req) {
 			game.selectResponse(message.content.text, player);
 			game.sendUpdate()
 		}
-		console.log(message);
-		if (message.type === 'gameUpdate') {
+		if (message.type === 'game_update') {
 			game.state = message.content.text;
 			game.sendUpdate()
 		}
