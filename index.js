@@ -24,6 +24,7 @@ wss.on('connection', function connection(ws, req) {
 	ws.on('message', function incoming(message) { // message should contain type and content
 		// console.log(`Received: "%s" from room ${game.code}.`, message);
 		message.trim();
+		message = message.toLowerCase();
 		message = JSON.parse(message);
 		if (message.type === 'card') {
 			if (!game.newCard(message.content.text, player, message.content.answer)) {
@@ -33,7 +34,7 @@ wss.on('connection', function connection(ws, req) {
 			game.sendUpdate()
 		}
 		if (message.type === 'response') {
-			game.newResponse(message.content.text, player);
+			game.newResponse(message.content.text, player, false);
 			game.sendUpdate()
 
 		}
@@ -116,7 +117,7 @@ class Game {
 			nick: player.nick
 		};
 		this.responses.push({text: text, player: newPlayer, votes: [], isAnswer: answer});
-		console.log(this.responses);
+		console.log("new response:", this.responses);
 		if (this.checkAllResponses()) {
 			this.state = 'picking'
 		}
