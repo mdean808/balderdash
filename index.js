@@ -44,7 +44,7 @@ wss.on('connection', function connection(ws, req) {
 		}
 
 		if (message.type === 'gameUpdate') {
-			game.state = 'starting';
+			game.state = message.content.text;
 			game.sendUpdate()
 		}
 
