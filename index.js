@@ -26,7 +26,6 @@ wss.on('connection', function connection(ws, req) {
 		message.trim();
 		message = message.toLowerCase();
 		message = JSON.parse(message);
-		console.log(message)
 		if (message.type === 'card') {
 			if (!game.newCard(message.content.text, player, message.content.answer)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
@@ -49,6 +48,7 @@ wss.on('connection', function connection(ws, req) {
 		}
 
 		if (message.type === 'next_round') {
+			console.log(player)
 			if (!game.nextRound(player)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
 				console.log("not dasher");
@@ -176,7 +176,7 @@ class Game {
 	}
 
 	nextRound(player) {
-		if (!player.dasher) return false;
+		if (player.role !== "dasher") return false;
 		this.state = 'starting';
 		// reset users
 		for (let i in this.users) {
