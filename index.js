@@ -48,13 +48,10 @@ wss.on('connection', function connection(ws, req) {
 		}
 
 		if (message.type === 'next_round') {
-			console.log(player)
 			if (!game.nextRound(player)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
-				console.log("not dasher");
 				return false
 			}
-			console.log("next rounded wth");
 			game.sendUpdate()
 		}
 	});
@@ -192,6 +189,11 @@ class Game {
 			this.dasher = this.users[0];
 			this.users[0].changeRole('dasher')
 		}
+
+		this.card = {};
+		this.responses = [];
+		this.totalVotes = 0;
+
 		return true
 	}
 
