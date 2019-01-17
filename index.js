@@ -26,6 +26,7 @@ wss.on('connection', function connection(ws, req) {
 		message.trim();
 		message = message.toLowerCase();
 		message = JSON.parse(message);
+		console.log(message)
 		if (message.type === 'card') {
 			if (!game.newCard(message.content.text, player, message.content.answer)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
@@ -53,7 +54,6 @@ wss.on('connection', function connection(ws, req) {
 				return false
 			}
 			game.sendUpdate()
-
 		}
 	});
 	if (game === false) {
@@ -73,13 +73,11 @@ function connectToGame(path, ws) {
 
 	if (game.users.filter(user => user.nick === nick).length > 0) return [false, false];
 	const player = new Player(decodeURI(nick), ws, false);
-	console.log("connectTo")
 	game.newPlayer(player);
 	return [player, game]
 }
 
 function createGame(nick, ws) {
-	console.log("create");
 	const newGame = new Game();
 	const player = new Player(nick, ws, true);
 	newGame.newPlayer(player);
@@ -116,7 +114,6 @@ class Game {
 			nick: player.nick
 		};
 		this.responses.push({text: text, player: newPlayer, votes: [], isAnswer: answer});
-		console.log("new response:", this.responses);
 		if (this.checkAllResponses()) {
 			this.state = 'picking'
 		}
