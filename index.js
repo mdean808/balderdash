@@ -6,7 +6,7 @@ let games = [];
 
 const server = express()
 	.use(express.static(__dirname))
-	.listen(process.env.PORT || 8080, () => console.log(`Listening on ${process.env.PORT || 8080}`));
+	.listen(process.env.PORT || 3420, () => console.log(`Listening on ${process.env.PORT || 3420}`));
 
 const wss = new WebSocket.Server({server});
 
