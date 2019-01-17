@@ -51,8 +51,10 @@ wss.on('connection', function connection(ws, req) {
 		if (message.type === 'next_round') {
 			if (!game.nextRound(player)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
+				console.log("not dasher");
 				return false
 			}
+			console.log("next rounded wth");
 			game.sendUpdate()
 		}
 	});
@@ -174,7 +176,7 @@ class Game {
 	}
 
 	nextRound(player) {
-		if (!player.host) return false;
+		if (!player.dasher) return false;
 		this.state = 'starting';
 		// reset users
 		for (let i in this.users) {
