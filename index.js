@@ -23,8 +23,7 @@ wss.on('connection', function connection(ws, req) {
 
 	ws.on('message', function incoming(message) { // message should contain type and content
 		// console.log(`Received: "%s" from room ${game.code}.`, message);
-		message.trim();
-		message = message.toLowerCase();
+		message = message.trim();
 		try {
 			message = JSON.parse(message);
 		} catch (e) {
@@ -124,7 +123,7 @@ class Game {
 	}
 
 	selectResponse(text, player) {
-		const responses = this.responses.filter(response => response.text === text);
+		const responses = this.responses.filter(response => response.text.toLowerCase() === text.toLowerCase());
 		const newPlayer = {
 			nick: player.nick
 		};
@@ -143,9 +142,9 @@ class Game {
 		if (this.state !== 'intermission') return false;
 		for (let i in this.responses) {
 			const playerClass = this.users.filter(user => user.nick === this.responses[i].player.nick)[0];
-			const responseSimilarity = Utils.similarity(this.responses[i].text, this.card.answer);
+			const responseSimilarity = Utils.similarity(this.responses[i].text.toLowerCase(), this.card.answer.toLowerCase());
 			if (playerClass.nick !== this.dasher.nick) {
-				if (responseSimilarity >= .45) {
+				if (responseSimilarity >= .80) {
 					//response was similar to correct answer
 					playerClass.points += 3;
 				}

@@ -78,5 +78,6 @@ module.exports = {
 	generateNewRoomId,
 	generateNewCardId,
 	parseGameForFrontend,
-	similarity
+	similarity,
+	shuffle
 };
