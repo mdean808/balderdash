@@ -25,7 +25,11 @@ wss.on('connection', function connection(ws, req) {
 		// console.log(`Received: "%s" from room ${game.code}.`, message);
 		message.trim();
 		message = message.toLowerCase();
-		message = JSON.parse(message);
+		try {
+			message = JSON.parse(message);
+		} catch (e) {
+			console.log("Message:", message, "error:\n", e);
+		}
 		if (message.type === 'card') {
 			if (!game.newCard(message.content.text, player, message.content.answer)) {
 				player.client.send(JSON.stringify({type: 'alert', content: 'You are not the dasher!'}));
@@ -114,6 +118,7 @@ class Game {
 		};
 		this.responses.push({text: text, player: newPlayer, votes: [], isAnswer: answer});
 		if (this.checkAllResponses()) {
+			this.responses = Utils.shuffle(this.responses);
 			this.state = 'picking'
 		}
 	}

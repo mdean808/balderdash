@@ -7,6 +7,15 @@ function generateNewCardId() {
 	return Math.floor(Math.random() * 9999);
 }
 
+function shuffle(a) {
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
+}
+
+
 function similarity(s1, s2) {
 	let longer = s1;
 	let shorter = s2;
