@@ -123,6 +123,7 @@ class Game {
 	}
 
 	selectResponse(text, player) {
+		console.log(text, player);
 		const responses = this.responses.filter(response => response.text.toLowerCase() === text.toLowerCase());
 		const newPlayer = {
 			nick: player.nick
